@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAIEMENT CONFIRMÉ — TECHOPTIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a0a0f;color:#fff;font-family:'Rajdhani',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;}
+.wrap{padding:2rem;max-width:500px;}
+.icon{font-size:4rem;margin-bottom:1.5rem;animation:pop 0.5s ease;}
+@keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+h1{font-family:'Orbitron',sans-serif;font-size:1.5rem;color:#f5c518;letter-spacing:0.15em;margin-bottom:1rem;}
+p{color:rgba(255,255,255,0.7);font-size:1rem;line-height:1.6;margin-bottom:2rem;}
+a{display:inline-flex;align-items:center;gap:0.5rem;background:#5865F2;color:#fff;padding:0.8rem 2rem;font-family:'Orbitron',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-decoration:none;border-radius:4px;}
+a:hover{background:#4752c4;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="icon">✅</div>
+  <h1>PAIEMENT CONFIRMÉ !</h1>
+  <p>Merci pour ton achat. Ton accès va être activé sous peu.<br>Rejoins le Discord pour recevoir ton rôle.</p>
+  <a href="https://discord.gg/GAJhvvpC">🎮 REJOINDRE LE DISCORD</a>
+</div>
+<script>
+var WEBHOOK="https://discord.com/api/webhooks/1507909210938146967/7-xwErRgofa7MP7Hv_aPjHV20zpBmKeFAerhi6AZYTmdJv1xhrrrFRLZEmdHQxbNMlSW";
+
+// Get URL params from Stripe (they pass ?session_id etc)
+var params=new URLSearchParams(window.location.search);
+var plan=params.get('plan')||'Inconnu';
+var duree=params.get('duree')||'Inconnu';
+var method=params.get('method')||'card';
+var price=params.get('price')||'?';
+
+// Only send once per session
+if(!sessionStorage.getItem('logged')){
+  sessionStorage.setItem('logged','1');
+  fetch(WEBHOOK,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({embeds:[{
+      title:"\uD83D\uDCB0 PAIEMENT CONFIRM\u00c9 \u2714\uFE0F",
+      color:65280,
+      fields:[
+        {name:"\uD83D\uDCE6 Offre",value:"**"+plan+" \u2014 "+duree+"**",inline:true},
+        {name:"\uD83D\uDCB0 Prix",value:"**"+price+"**",inline:true},
+        {name:"\uD83D\uDCB3 M\u00e9thode",value:method==="card"?"Carte (Stripe)":"PayPal",inline:true}
+      ],
+      footer:{text:"TechOptim \u2022 "+new Date().toLocaleString("fr-FR")}
+    }]})
+  });
+}
+</script>
+</body>
+</html>
