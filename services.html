@@ -1,0 +1,506 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg0:#04030f;--bg1:#070618;--bg2:#0b0920;
+  --p:#7c3aed;--p2:#9333ea;--p3:#a855f7;--p4:#c084fc;--p5:#e9d5ff;
+  --glow:rgba(124,58,237,0.6);
+  --circuit2:rgba(124,58,237,0.08);
+  --txt:#e2d9f3;--txt2:#a78bca;--txt3:#6b52a3;
+  --gold:#f59e0b;--diamond:#38bdf8;
+  --border:rgba(124,58,237,0.25);--border2:rgba(124,58,237,0.5);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg0);color:var(--txt);font-family:'Rajdhani',sans-serif;overflow-x:hidden;font-size:16px;}
+
+/* CIRCUIT BG */
+.circuit-bg{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:repeating-linear-gradient(90deg,var(--circuit2) 0,var(--circuit2) 1px,transparent 1px,transparent 60px),
+             repeating-linear-gradient(0deg,var(--circuit2) 0,var(--circuit2) 1px,transparent 1px,transparent 60px);}
+.circuit-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(124,58,237,0.12) 0%,transparent 60%);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(4,3,15,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;font-family:'Orbitron',sans-serif;}
+.logo{font-size:1.1rem;font-weight:700;color:var(--p4);letter-spacing:0.15em;text-shadow:0 0 20px var(--glow);text-decoration:none;}
+.logo span{color:#fff;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--txt2);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--p4);}
+.nav-cta{background:linear-gradient(135deg,#5865f2,var(--p));color:#fff;border:none;padding:0.45rem 1.2rem;font-family:'Orbitron',sans-serif;font-weight:600;font-size:0.75rem;letter-spacing:0.1em;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:opacity 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+.nav-cta:hover{opacity:0.85;}
+
+/* PAGE HERO */
+.page-hero{padding:5rem 2rem 3.5rem;text-align:center;position:relative;z-index:1;}
+.scan-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(124,58,237,0.8),transparent);animation:scan 4s linear infinite;pointer-events:none;}
+@keyframes scan{0%{top:0;opacity:0.8;}100%{top:100%;opacity:0;}}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);padding:0.3rem 1rem;font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:0.15em;color:var(--p4);margin-bottom:1.5rem;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+.dot{width:6px;height:6px;background:var(--p3);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.page-hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:0.06em;color:#fff;text-shadow:0 0 40px var(--glow);margin-bottom:1rem;}
+.page-hero h1 .hl{color:var(--p4);}
+.page-hero p{color:var(--txt2);max-width:540px;margin:0 auto;font-size:0.95rem;line-height:1.7;}
+
+/* SERVICE NAV TABS */
+.service-tabs{display:flex;justify-content:center;gap:0;border:1px solid var(--border);margin:3rem auto 0;max-width:700px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);overflow:hidden;position:relative;z-index:1;}
+.stab{flex:1;padding:0.85rem 0.5rem;text-align:center;font-family:'Orbitron',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;color:var(--txt3);cursor:pointer;transition:all 0.2s;border-right:1px solid var(--border);background:rgba(7,6,24,0.9);}
+.stab:last-child{border-right:none;}
+.stab:hover{color:var(--txt2);background:rgba(124,58,237,0.06);}
+.stab.active{color:var(--p4);background:rgba(124,58,237,0.1);border-bottom:2px solid var(--p3);}
+.stab i{display:block;font-size:18px;margin-bottom:4px;color:inherit;}
+
+/* MAIN LAYOUT */
+.sep{width:100%;border:none;border-top:1px solid var(--border);margin:0;}
+.services-wrap{max-width:1100px;margin:0 auto;padding:4rem 2rem;position:relative;z-index:1;}
+.stag{font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--p3);margin-bottom:0.6rem;display:flex;align-items:center;gap:8px;}
+.stag::before,.stag::after{content:'';display:inline-block;width:20px;height:1px;background:var(--p);}
+h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.1rem,2.5vw,1.65rem);font-weight:700;letter-spacing:0.05em;color:#fff;margin-bottom:0.6rem;}
+
+/* SERVICE PANEL */
+.service-panel{display:none;}
+.service-panel.active{display:block;animation:fadeIn 0.35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* SERVICE HEADER CARD */
+.svc-header{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-bottom:3rem;padding:2rem;border:1px solid var(--border);background:rgba(7,6,24,0.8);position:relative;overflow:hidden;}
+.svc-header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--p),var(--p3),transparent);}
+.svc-header-badge{display:inline-flex;align-items:center;gap:8px;font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:0.15em;color:var(--p4);border:1px solid var(--border2);padding:0.25rem 0.8rem;margin-bottom:1rem;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+.svc-header h3{font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:900;letter-spacing:0.06em;color:#fff;margin-bottom:0.75rem;line-height:1.2;}
+.svc-header h3 span{color:var(--p4);}
+.svc-header p{color:var(--txt2);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;}
+.svc-header-right{display:flex;flex-direction:column;gap:0.85rem;}
+.svc-metric{border:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;gap:14px;background:rgba(0,0,0,0.3);}
+.svc-metric-icon{width:38px;height:38px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+.svc-metric-icon i{font-size:18px;color:var(--p3);}
+.svc-metric-val{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;color:var(--p4);}
+.svc-metric-lbl{font-size:0.75rem;color:var(--txt3);letter-spacing:0.06em;}
+.btn-a{background:var(--p);color:#fff;border:none;padding:0.75rem 1.8rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:0.08em;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn-a:hover{background:var(--p2);}
+.btn-a.gold-btn{background:linear-gradient(135deg,rgba(245,158,11,0.9),rgba(180,100,5,0.9));color:#000;}
+.btn-a.dia-btn{background:linear-gradient(135deg,#1d6fa8,#38bdf8);color:#000;}
+
+/* STEPS / PROCESS */
+.steps-title{font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.18em;color:var(--p5);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;}
+.steps-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);margin-bottom:2.5rem;}
+.step{display:grid;grid-template-columns:56px 1fr;gap:0;border-bottom:1px solid var(--border);transition:background 0.2s;}
+.step:last-child{border-bottom:none;}
+.step:hover{background:rgba(124,58,237,0.04);}
+.step-num{border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:700;color:var(--txt3);padding:1.25rem 0;}
+.step-num.gold{color:var(--gold);}
+.step-num.dia{color:var(--diamond);}
+.step-body{padding:1.25rem 1.5rem;}
+.step-t{font-family:'Orbitron',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;color:var(--p5);margin-bottom:0.35rem;display:flex;align-items:center;gap:8px;}
+.step-t .badge-elite{font-size:0.55rem;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:var(--diamond);padding:1px 6px;letter-spacing:0.06em;}
+.step-d{font-size:0.84rem;color:var(--txt2);line-height:1.6;}
+
+/* DETAIL GRID */
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;border:1px solid var(--border);margin-bottom:2.5rem;}
+.detail-cell{padding:1.25rem 1.5rem;background:rgba(7,6,24,0.8);transition:background 0.2s;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.detail-cell:hover{background:rgba(124,58,237,0.06);}
+.dc-icon{width:32px;height:32px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin-bottom:0.85rem;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+.dc-icon i{font-size:15px;color:var(--p3);}
+.dc-icon.gold-ic{border-color:rgba(245,158,11,0.4);}
+.dc-icon.gold-ic i{color:var(--gold);}
+.dc-icon.dia-ic{border-color:rgba(56,189,248,0.4);}
+.dc-icon.dia-ic i{color:var(--diamond);}
+.dc-t{font-family:'Orbitron',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.08em;color:var(--p5);margin-bottom:0.35rem;}
+.dc-d{font-size:0.82rem;color:var(--txt2);line-height:1.55;}
+
+/* FAQ / ACCORDION */
+.faq-label{font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.18em;color:var(--p5);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;}
+.faq-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.faq{border:1px solid var(--border);margin-bottom:2.5rem;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Orbitron',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;color:var(--txt2);transition:color 0.2s;user-select:none;}
+.faq-q:hover{color:var(--p4);}
+.faq-q i{font-size:14px;transition:transform 0.25s;flex-shrink:0;}
+.faq-item.open .faq-q{color:var(--p4);}
+.faq-item.open .faq-q i{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 1.5rem 1rem;font-size:0.85rem;color:var(--txt2);line-height:1.65;border-top:1px solid var(--circuit2);}
+.faq-item.open .faq-a{display:block;}
+
+/* COMPATIBILITY TABLE */
+.compat-label{font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.18em;color:var(--p5);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;}
+.compat-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.compat-table{width:100%;border:1px solid var(--border);border-collapse:collapse;margin-bottom:2.5rem;}
+.compat-table th{font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:0.12em;color:var(--txt3);background:rgba(0,0,0,0.4);padding:0.7rem 1rem;border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left;}
+.compat-table th:last-child{border-right:none;}
+.compat-table td{padding:0.75rem 1rem;font-size:0.83rem;color:var(--txt2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);}
+.compat-table td:last-child{border-right:none;}
+.compat-table tr:last-child td{border-bottom:none;}
+.compat-table tr:hover td{background:rgba(124,58,237,0.04);}
+.compat-table td:first-child{font-family:'Orbitron',sans-serif;font-size:0.7rem;letter-spacing:0.06em;color:var(--p5);}
+.ck{color:#4ade80;font-size:14px;}
+.cx{color:#f87171;font-size:14px;}
+.cd{color:var(--txt3);font-size:13px;}
+
+/* WARNING BOX */
+.warn-box{border:1px solid rgba(245,158,11,0.3);background:rgba(245,158,11,0.04);padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:12px;margin-bottom:2.5rem;}
+.warn-box i{font-size:18px;color:var(--gold);margin-top:1px;flex-shrink:0;}
+.warn-box p{font-size:0.83rem;color:var(--txt2);line-height:1.6;}
+.warn-box p strong{color:var(--gold);font-family:'Orbitron',sans-serif;font-size:0.7rem;letter-spacing:0.08em;}
+
+/* INFO BOX */
+.info-box{border:1px solid var(--border2);background:rgba(124,58,237,0.05);padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:12px;margin-bottom:2.5rem;}
+.info-box i{font-size:18px;color:var(--p3);margin-top:1px;flex-shrink:0;}
+.info-box p{font-size:0.83rem;color:var(--txt2);line-height:1.6;}
+.info-box p strong{color:var(--p4);font-family:'Orbitron',sans-serif;font-size:0.7rem;letter-spacing:0.06em;}
+
+/* CTA BOTTOM */
+.svc-cta{border:1px solid var(--border2);padding:3rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:1rem;}
+.svc-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--p),var(--p3),transparent);}
+.svc-cta::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--p),var(--p3),transparent);}
+.svc-cta h3{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:0.08em;color:#fff;margin-bottom:0.6rem;}
+.svc-cta p{color:var(--txt2);font-size:0.9rem;margin-bottom:1.75rem;}
+.btn-disc{background:linear-gradient(135deg,#5865f2,var(--p));color:#fff;border:none;padding:0.85rem 2.2rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.12em;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:opacity 0.2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-disc:hover{opacity:0.88;}
+
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--txt3);font-size:0.75rem;font-family:'Orbitron',sans-serif;letter-spacing:0.08em;}
+footer a{color:var(--txt3);text-decoration:none;}
+
+@media(max-width:768px){
+  .svc-header{grid-template-columns:1fr;}
+  .svc-header-right{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;}
+  .service-tabs{clip-path:none;overflow-x:auto;}
+  .stab{min-width:80px;}
+  nav .nav-links{display:none;}
+  .compat-table{font-size:0.75rem;}
+}
+</style>
+
+<div class="circuit-bg"></div>
+
+<nav>
+  <a href="index.html" class="logo">TECH<span>OPTIM</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">ACCUEIL</a></li>
+    <li><a href="services.html" class="active">SERVICES</a></li>
+    <li><a href="index.html#offres">OFFRES</a></li>
+    <li><a href="index.html#pricing">TARIFS</a></li>
+    <li><a href="https://discord.gg/GAJhvvpC">DISCORD</a></li>
+  </ul>
+  <a href="https://discord.gg/GAJhvvpC" class="nav-cta"><i class="ti ti-brand-discord" style="font-size:14px;"></i>REJOINDRE</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="overflow:hidden;">
+  <div class="scan-line"></div>
+  <div class="hero-tag"><span class="dot"></span>SERVICES TECHOPTIM</div>
+  <h1>NOS <span class="hl">OPTIMISATIONS</span></h1>
+  <p>Découvre en détail chaque service proposé par TechOptim — du débloat complet à l'overclocking logiciel. Choisis ton niveau, commence à performer.</p>
+</section>
+
+<!-- SERVICE TABS -->
+<div class="service-tabs" style="z-index:1;position:relative;">
+  <div class="stab active" onclick="showPanel('debloat',this)"><i class="ti ti-cpu"></i>DÉBLOAT</div>
+  <div class="stab" onclick="showPanel('registre',this)"><i class="ti ti-settings"></i>REGISTRE</div>
+  <div class="stab" onclick="showPanel('powerplan',this)"><i class="ti ti-bolt"></i>POWER PLAN</div>
+  <div class="stab" onclick="showPanel('latence',this)"><i class="ti ti-activity"></i>INPUT LAG</div>
+  <div class="stab" onclick="showPanel('elite',this)"><i class="ti ti-diamond"></i>ELITE ONLY</div>
+</div>
+
+<hr class="sep" style="margin-top:3rem;">
+
+<div class="services-wrap">
+
+  <!-- ═══ PANEL 1 : DÉBLOAT ═══ -->
+  <div class="service-panel active" id="panel-debloat">
+    <div class="svc-header">
+      <div>
+        <div class="svc-header-badge"><i class="ti ti-cpu" style="font-size:12px;"></i>SERVICE 01</div>
+        <h3>DÉBLOAT<br><span>WINDOWS</span></h3>
+        <p>Windows est livré avec des dizaines de services, applications et tâches planifiées inutiles qui consomment ta RAM, ton CPU et allongent les temps de réponse. On les supprime proprement.</p>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-a"><i class="ti ti-brand-discord"></i>ACCÉDER AU SERVICE</a>
+      </div>
+      <div class="svc-header-right">
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-cpu"></i></div>
+          <div><div class="svc-metric-val">-30%</div><div class="svc-metric-lbl">CHARGE CPU AU DÉMARRAGE</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-server"></i></div>
+          <div><div class="svc-metric-val">-500 MB</div><div class="svc-metric-lbl">RAM LIBÉRÉE EN IDLE</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-clock"></i></div>
+          <div><div class="svc-metric-val">×2</div><div class="svc-metric-lbl">DÉMARRAGE PLUS RAPIDE</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-title">PROCESSUS D'OPTIMISATION</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-body"><div class="step-t">ANALYSE DU SYSTÈME</div><div class="step-d">Audit complet des services actifs, des apps de démarrage et des tâches planifiées pour identifier ce qui peut être retiré en toute sécurité.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-body"><div class="step-t">SUPPRESSION DES BLOATWARES</div><div class="step-d">Désinstallation des apps préinstallées inutiles (Cortana, Xbox Game Bar, OneDrive, Weather, etc.) via script PowerShell sécurisé.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-body"><div class="step-t">DÉSACTIVATION DES SERVICES INUTILES</div><div class="step-d">Liste optimisée de services Windows désactivés sans impacter la stabilité — télémétrie, diagnostics, SysMain, et autres.</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-body"><div class="step-t">NETTOYAGE DU DÉMARRAGE</div><div class="step-d">Suppression de tous les programmes inutiles au démarrage et optimisation des tâches planifiées pour un boot ultra rapide.</div></div></div>
+      <div class="step"><div class="step-num">05</div><div class="step-body"><div class="step-t">VÉRIFICATION & TEST</div><div class="step-d">Test de stabilité post-optimisation pour confirmer que tout fonctionne correctement avant de livrer les fichiers.</div></div></div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-brand-windows"></i></div><div class="dc-t">APPS SUPPRIMÉES</div><div class="dc-d">Cortana, Xbox, Weather, News, Maps, Solitaire, Mixed Reality, et bien d'autres inutiles.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-player-stop"></i></div><div class="dc-t">SERVICES DÉSACTIVÉS</div><div class="dc-d">SysMain, DiagTrack, Telemetry, WSearch, Windows Update (configurable), et plus.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-shield-off"></i></div><div class="dc-t">TÉLÉMÉTRIE BLOQUÉE</div><div class="dc-d">Suppression totale des envois de données à Microsoft pour libérer bande passante et CPU.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-refresh"></i></div><div class="dc-t">DÉMARRAGE OPTIMISÉ</div><div class="dc-d">Boot plus rapide, moins d'apps lancées en arrière-plan, système prêt en quelques secondes.</div></div>
+    </div>
+
+    <div class="warn-box"><i class="ti ti-alert-triangle"></i><p><strong>COMPATIBILITÉ :</strong> Ce service s'applique à Windows 10 (build 1903+) et Windows 11. Une sauvegarde de tes données est recommandée avant toute intervention. Nos tweaks sont réversibles.</p></div>
+
+    <div class="faq-label">QUESTIONS FRÉQUENTES</div>
+    <div class="faq">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Est-ce que le débloat peut casser mon PC ? <i class="ti ti-plus"></i></div><div class="faq-a">Non — nos scripts sont testés et reversibles. On ne touche qu'aux services non essentiels. Tu peux toujours restaurer via un point de restauration Windows.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Le débloat fonctionne sur Windows 11 ? <i class="ti ti-plus"></i></div><div class="faq-a">Oui. Nos optimisations couvrent Windows 10 et Windows 11. Certaines apps supprimées diffèrent selon la version mais l'effet est similaire.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Est-ce que les mises à jour Windows peuvent annuler le débloat ? <i class="ti ti-plus"></i></div><div class="faq-a">Certaines mises à jour majeures peuvent réinstaller des apps. C'est pourquoi nos membres Elite ont accès à des scripts permanents qui se réappliquent automatiquement.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Comment j'applique les optimisations ? <i class="ti ti-plus"></i></div><div class="faq-a">Tout est documenté pas à pas sur notre serveur Discord. Tu reçois les scripts + un guide détaillé. En cas de doute, le support est là.</div></div>
+    </div>
+
+    <div class="svc-cta">
+      <h3>PRÊT À DÉBLOATER TON PC ?</h3>
+      <p>Rejoins le serveur Discord et accède aux scripts dans le salon dédié à ton offre.</p>
+      <a href="https://discord.gg/GAJhvvpC" class="btn-disc"><i class="ti ti-brand-discord"></i>REJOINDRE TECHOPTIM</a>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 2 : REGISTRE ═══ -->
+  <div class="service-panel" id="panel-registre">
+    <div class="svc-header">
+      <div>
+        <div class="svc-header-badge"><i class="ti ti-settings" style="font-size:12px;"></i>SERVICE 02</div>
+        <h3>OPTIMISATIONS<br><span>DU REGISTRE</span></h3>
+        <p>Le registre Windows contient des centaines de clés qui influencent les performances. Des valeurs mal configurées = latence, stutters et instabilité. On corrige tout ça en profondeur.</p>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-a"><i class="ti ti-brand-discord"></i>ACCÉDER AU SERVICE</a>
+      </div>
+      <div class="svc-header-right">
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-activity"></i></div>
+          <div><div class="svc-metric-val">-40%</div><div class="svc-metric-lbl">STUTTERS EN JEU</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-network"></i></div>
+          <div><div class="svc-metric-val">RÉDUIT</div><div class="svc-metric-lbl">LATENCE RÉSEAU</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-device-desktop"></i></div>
+          <div><div class="svc-metric-val">+FPS</div><div class="svc-metric-lbl">STABILITÉ FRAMERATE</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-title">CE QU'ON OPTIMISE</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-body"><div class="step-t">PRIORITÉS DES PROCESSUS</div><div class="step-d">Configuration des priorités CPU dans le registre pour que tes jeux passent avant tout le reste. Moins de compétition, plus de frames.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-body"><div class="step-t">OPTIMISATIONS RÉSEAU</div><div class="step-d">Tweaks des buffers TCP/IP, désactivation du throttling réseau et optimisation de la latence pour un ping plus stable.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-body"><div class="step-t">MÉMOIRE & CACHE</div><div class="step-d">Paramétrage de la gestion mémoire Windows (LargeSystemCache, IoPageLockLimit) pour améliorer la fluidité des gros jeux.</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-body"><div class="step-t">GPU & RENDU</div><div class="step-d">Clés registre liées au GPU scheduler, HAGS et préemption GPU pour réduire les micro-freezes graphiques.</div></div></div>
+      <div class="step"><div class="step-num">05</div><div class="step-body"><div class="step-t">STOCKAGE & I/O</div><div class="step-d">Optimisation des accès disque, désactivation du prefetch inutile et amélioration des temps de lecture SSD/NVMe.</div></div></div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-brand-windows"></i></div><div class="dc-t">HIVES MODIFIÉS</div><div class="dc-d">HKLM, HKCU — toutes les clés impactant les perfs gaming sont ciblées et optimisées.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-file-code"></i></div><div class="dc-t">FICHIER .REG FOURNI</div><div class="dc-d">Tu reçois un fichier .reg prêt à l'emploi + un fichier de restauration si besoin.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-refresh"></i></div><div class="dc-t">MIS À JOUR</div><div class="dc-d">Nos tweaks registre sont mis à jour régulièrement selon les nouvelles versions de Windows.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-shield-check"></i></div><div class="dc-t">REVERSIBLE</div><div class="dc-d">Chaque modification est documentée et un backup du registre est toujours recommandé.</div></div>
+    </div>
+
+    <div class="faq-label">QUESTIONS FRÉQUENTES</div>
+    <div class="faq">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">C'est dangereux de modifier le registre ? <i class="ti ti-plus"></i></div><div class="faq-a">Uniquement si tu ne sais pas ce que tu fais. Nos fichiers .reg sont clé en main et documentés. On inclut toujours un guide de restauration.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Est-ce que ça améliore vraiment les FPS ? <i class="ti ti-plus"></i></div><div class="faq-a">Oui, notamment en réduisant les stutters et en stabilisant le framerate. Le gain en FPS brut varie selon le hardware, mais la fluidité s'améliore systématiquement.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Ça marche avec tous les jeux ? <i class="ti ti-plus"></i></div><div class="faq-a">Oui — les optimisations sont au niveau système, pas jeu par jeu. Warzone, Valorant, Fortnite, Apex, CS2... tous en bénéficient.</div></div>
+    </div>
+
+    <div class="svc-cta">
+      <h3>OPTIMISE TON REGISTRE MAINTENANT</h3>
+      <p>Accède aux fichiers .reg et au guide complet depuis le Discord.</p>
+      <a href="https://discord.gg/GAJhvvpC" class="btn-disc"><i class="ti ti-brand-discord"></i>REJOINDRE TECHOPTIM</a>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 3 : POWER PLAN ═══ -->
+  <div class="service-panel" id="panel-powerplan">
+    <div class="svc-header">
+      <div>
+        <div class="svc-header-badge"><i class="ti ti-bolt" style="font-size:12px;"></i>SERVICE 03</div>
+        <h3>POWER PLAN<br><span>PERSONNALISÉ</span></h3>
+        <p>Le plan d'alimentation Windows contrôle directement la façon dont ton CPU gère sa fréquence. Un mauvais plan = CPU qui bride en plein milieu d'un fight. On configure le plan parfait pour toi.</p>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-a"><i class="ti ti-brand-discord"></i>ACCÉDER AU SERVICE</a>
+      </div>
+      <div class="svc-header-right">
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-cpu"></i></div>
+          <div><div class="svc-metric-val">100%</div><div class="svc-metric-lbl">FRÉQUENCE CPU CONSTANTE</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-activity"></i></div>
+          <div><div class="svc-metric-val">-50%</div><div class="svc-metric-lbl">PICS DE LATENCE CPU</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-flame"></i></div>
+          <div><div class="svc-metric-val">STABLE</div><div class="svc-metric-lbl">PERFORMANCE EN JEU</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-title">CONFIGURATION DU POWER PLAN</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-body"><div class="step-t">PLAN DE BASE CUSTOM</div><div class="step-d">On part d'un profil haute performance et on le pousse encore plus loin en activant toutes les options cachées via powercfg.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-body"><div class="step-t">GESTION DES ÉTATS C-STATE</div><div class="step-d">Désactivation des états d'économie d'énergie profonds du CPU pour éviter les latences de réveil lors des pics d'activité.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-body"><div class="step-t">PROCESSOR BOOST POLICY</div><div class="step-d">Configuration de la politique de boost CPU pour maintenir des fréquences élevées stables sans surchauffe ni throttling.</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-body"><div class="step-t">USB & PCIe POWER</div><div class="step-d">Désactivation de la mise en veille USB et PCIe pour éviter les freezes liés aux périphériques (souris, GPU, réseau).</div></div></div>
+    </div>
+
+    <div class="compat-label">COMPATIBILITÉ PAR HARDWARE</div>
+    <table class="compat-table">
+      <tr><th>HARDWARE</th><th>PREMIUM</th><th>ELITE</th><th>NOTES</th></tr>
+      <tr><td>CPU INTEL (12e–14e gen)</td><td><i class="ti ti-check ck"></i></td><td><i class="ti ti-check ck"></i></td><td>Optimisation P-Core/E-Core incluse en Elite</td></tr>
+      <tr><td>CPU AMD RYZEN (5000/7000)</td><td><i class="ti ti-check ck"></i></td><td><i class="ti ti-check ck"></i></td><td>Tweaks spécifiques Ryzen disponibles Elite</td></tr>
+      <tr><td>CPU INTEL (6e–11e gen)</td><td><i class="ti ti-check ck"></i></td><td><i class="ti ti-check ck"></i></td><td>Compatibilité totale</td></tr>
+      <tr><td>LAPTOP / PORTABLE</td><td><i class="ti ti-minus cd"></i></td><td><i class="ti ti-check ck"></i></td><td>Réglages adaptés batterie/secteur Elite</td></tr>
+      <tr><td>CPU AMD ANCIEN (3000/1000)</td><td><i class="ti ti-check ck"></i></td><td><i class="ti ti-check ck"></i></td><td>Gain limité sur très anciens CPU</td></tr>
+    </table>
+
+    <div class="info-box"><i class="ti ti-info-circle"></i><p><strong>BON À SAVOIR :</strong> Le power plan personnalisé est souvent la première chose qu'on configure car il impacte immédiatement la réactivité du système, même avant le débloat. On recommande de commencer par là.</p></div>
+
+    <div class="svc-cta">
+      <h3>CONFIGURE TON POWER PLAN IDÉAL</h3>
+      <p>Le fichier .pow + le guide d'installation sont disponibles sur le Discord.</p>
+      <a href="https://discord.gg/GAJhvvpC" class="btn-disc"><i class="ti ti-brand-discord"></i>REJOINDRE TECHOPTIM</a>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 4 : INPUT LAG ═══ -->
+  <div class="service-panel" id="panel-latence">
+    <div class="svc-header">
+      <div>
+        <div class="svc-header-badge"><i class="ti ti-activity" style="font-size:12px;"></i>SERVICE 04</div>
+        <h3>RÉDUCTION<br><span>DE L'INPUT LAG</span></h3>
+        <p>L'input lag, c'est le délai entre ton clic et l'action en jeu. Même 10ms de trop font la différence. On attaque le problème à tous les niveaux : Windows, GPU, périphériques et réseau.</p>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-a"><i class="ti ti-brand-discord"></i>ACCÉDER AU SERVICE</a>
+      </div>
+      <div class="svc-header-right">
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-mouse"></i></div>
+          <div><div class="svc-metric-val">-15ms</div><div class="svc-metric-lbl">INPUT LAG MOYEN RÉDUIT</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-network"></i></div>
+          <div><div class="svc-metric-val">STABLE</div><div class="svc-metric-lbl">PING EN JEU</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon"><i class="ti ti-eye"></i></div>
+          <div><div class="svc-metric-val">+FLUIDE</div><div class="svc-metric-lbl">RENDU ÉCRAN PERÇU</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-title">OPTIMISATIONS CIBLÉES</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-body"><div class="step-t">TIMER RÉSOLUTION</div><div class="step-d">Abaissement de la résolution du timer Windows à 0.5ms (contre 15.6ms par défaut) pour une planification CPU ultra-précise.</div></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-body"><div class="step-t">DÉSACTIVATION DU V-SYNC & BUFFERING</div><div class="step-d">Configuration des pilotes GPU (NVIDIA/AMD) pour désactiver les options d'attente qui ajoutent de la latence de rendu.</div></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-body"><div class="step-t">POLLING RATE & SOURIS</div><div class="step-d">Optimisation du polling rate USB de la souris et désactivation de l'accélération Windows pour un tracking brut et précis.</div></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-body"><div class="step-t">PILOTES GPU OPTIMISÉS</div><div class="step-d">Configuration des panneaux NVIDIA/AMD Control Panel pour prioriser la latence plutôt que la qualité d'image.</div></div></div>
+      <div class="step"><div class="step-num">05</div><div class="step-body"><div class="step-t">AFFINITY & IRQ</div><div class="step-d">Attribution des interruptions (IRQ) aux bons cores CPU pour éviter les conflits entre GPU, réseau et autres périphériques.</div></div></div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-device-gamepad"></i></div><div class="dc-t">COMPATIBLE TOUS JEUX</div><div class="dc-d">Valorant, Warzone, Fortnite, Apex, CS2 — tous les FPS compétitifs bénéficient de ces optimisations.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-brand-nvidia"></i></div><div class="dc-t">NVIDIA & AMD</div><div class="dc-d">On couvre les deux marques GPU avec des configs adaptées à chaque panneau de contrôle.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-mouse"></i></div><div class="dc-t">PÉRIPHÉRIQUES</div><div class="dc-d">Souris, clavier, casque — tout ce qui est connecté en USB peut être optimisé pour réduire la latence.</div></div>
+      <div class="detail-cell"><div class="dc-icon"><i class="ti ti-wifi"></i></div><div class="dc-t">RÉSEAU GAMING</div><div class="dc-d">Tweaks réseau pour stabiliser le ping et réduire les pics de latence en ligne.</div></div>
+    </div>
+
+    <div class="faq-label">QUESTIONS FRÉQUENTES</div>
+    <div class="faq">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Est-ce que ça change vraiment quelque chose en jeu ? <i class="ti ti-plus"></i></div><div class="faq-a">Oui — surtout si tu joues en compétitif. La réduction de l'input lag se ressent directement dans la réactivité des combats. Moins de délai = meilleures réactions.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Mon écran 144Hz/240Hz est compatible ? <i class="ti ti-plus"></i></div><div class="faq-a">Absolument. Plus ton écran est rapide, plus ces optimisations ont d'impact. On a des guides spécifiques pour les configs 144Hz, 165Hz, 240Hz et 360Hz.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Est-ce que ça marche avec une connexion Wi-Fi ? <i class="ti ti-plus"></i></div><div class="faq-a">Oui, nos tweaks réseau s'appliquent aussi au Wi-Fi. Mais on recommande toujours l'Ethernet pour les meilleures perfs en ligne.</div></div>
+    </div>
+
+    <div class="svc-cta">
+      <h3>JOUE SANS LATENCE</h3>
+      <p>Accède aux guides input lag complets sur le Discord.</p>
+      <a href="https://discord.gg/GAJhvvpC" class="btn-disc"><i class="ti ti-brand-discord"></i>REJOINDRE TECHOPTIM</a>
+    </div>
+  </div>
+
+  <!-- ═══ PANEL 5 : ELITE ONLY ═══ -->
+  <div class="service-panel" id="panel-elite">
+    <div class="svc-header" style="border-color:rgba(56,189,248,0.3);">
+      <div>
+        <div class="svc-header-badge" style="color:var(--diamond);border-color:rgba(56,189,248,0.4);"><i class="ti ti-diamond" style="font-size:12px;"></i>ACCÈS ELITE UNIQUEMENT</div>
+        <h3 style="color:#fff;">TWEAKS <span style="color:var(--diamond);">EXCLUSIFS ELITE</span></h3>
+        <p>Les optimisations que tu ne trouveras nulle part ailleurs. Des configs avancées, des tweaks secrets et des réglages qui font la vraie différence entre un PC optimisé et un PC vraiment "endgame".</p>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-a dia-btn"><i class="ti ti-diamond"></i>ACCÉDER EN ELITE</a>
+      </div>
+      <div class="svc-header-right">
+        <div class="svc-metric">
+          <div class="svc-metric-icon" style="border-color:rgba(56,189,248,0.4);"><i class="ti ti-lock-open" style="color:var(--diamond);"></i></div>
+          <div><div class="svc-metric-val" style="color:var(--diamond);">EXCLUSIF</div><div class="svc-metric-lbl">INTROUVABLE AILLEURS</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon" style="border-color:rgba(56,189,248,0.4);"><i class="ti ti-trending-up" style="color:var(--diamond);"></i></div>
+          <div><div class="svc-metric-val" style="color:var(--diamond);">MAX</div><div class="svc-metric-lbl">OPTIMISATION POUSSÉE</div></div>
+        </div>
+        <div class="svc-metric">
+          <div class="svc-metric-icon" style="border-color:rgba(56,189,248,0.4);"><i class="ti ti-refresh" style="color:var(--diamond);"></i></div>
+          <div><div class="svc-metric-val" style="color:var(--diamond);">RÉGULIER</div><div class="svc-metric-lbl">MIS À JOUR EN CONTINU</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-title" style="color:var(--diamond);">CONTENU ELITE EXCLUSIF</div>
+    <div class="steps">
+      <div class="step"><div class="step-num dia">01</div><div class="step-body"><div class="step-t">TWEAKS AVANCÉS <span class="badge-elite">ELITE ONLY</span></div><div class="step-d">Des optimisations plus agressives que le Premium, ciblant des couches plus profondes du système : kernel tweaks, IRQ priority, DPC latency.</div></div></div>
+      <div class="step"><div class="step-num dia">02</div><div class="step-body"><div class="step-t">CONFIGS SECRÈTES <span class="badge-elite">ELITE ONLY</span></div><div class="step-d">Des configurations issues de recherches approfondies et de tests intensifs — jamais partagées publiquement, uniquement disponibles pour les membres Elite.</div></div></div>
+      <div class="step"><div class="step-num dia">03</div><div class="step-body"><div class="step-t">INPUT LAG ULTRA RÉDUIT <span class="badge-elite">ELITE ONLY</span></div><div class="step-d">Réglages encore plus poussés sur le timer, l'affinity GPU/réseau et les interruptions pour atteindre la latence la plus basse possible sur ta config.</div></div></div>
+      <div class="step"><div class="step-num dia">04</div><div class="step-body"><div class="step-t">SUPPORT DÉDIÉ PRIORITAIRE <span class="badge-elite">ELITE ONLY</span></div><div class="step-d">Accès à un salon support réservé aux Elite avec réponses garanties. On t'aide à appliquer et adapter chaque tweak à ton hardware spécifique.</div></div></div>
+      <div class="step"><div class="step-num dia">05</div><div class="step-body"><div class="step-t">MISES À JOUR EXCLUSIVES <span class="badge-elite">ELITE ONLY</span></div><div class="step-d">Les nouveaux tweaks et découvertes sont publiés en priorité sur le salon Elite. Tu es toujours le premier à en profiter.</div></div></div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-cell"><div class="dc-icon dia-ic"><i class="ti ti-lock"></i></div><div class="dc-t">ACCÈS PRIVÉ</div><div class="dc-d">Salon Discord privé, visible uniquement par les membres Elite actifs.</div></div>
+      <div class="detail-cell"><div class="dc-icon dia-ic"><i class="ti ti-file-analytics"></i></div><div class="dc-t">DOCUMENTATION COMPLÈTE</div><div class="dc-d">Chaque tweak est expliqué en détail pour que tu comprennes ce que tu appliques.</div></div>
+      <div class="detail-cell"><div class="dc-icon dia-ic"><i class="ti ti-users"></i></div><div class="dc-t">COMMUNAUTÉ ELITE</div><div class="dc-d">Un groupe de passionnés au même niveau, qui partagent leurs découvertes en temps réel.</div></div>
+      <div class="detail-cell"><div class="dc-icon dia-ic"><i class="ti ti-gift"></i></div><div class="dc-t">EVENTS RÉSERVÉS</div><div class="dc-d">Giveaways, early access aux nouveaux outils et événements exclusifs Elite.</div></div>
+    </div>
+
+    <div class="info-box" style="border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.04);"><i class="ti ti-info-circle" style="color:var(--diamond);"></i><p><strong style="color:var(--diamond);">POURQUOI ELITE ?</strong> Le Premium est déjà très puissant — mais l'Elite va chercher les derniers % d'optimisation que la plupart des gens ne connaissent même pas. Si tu joues sérieusement, c'est le niveau qu'il te faut.</p></div>
+
+    <div class="svc-cta" style="border-color:rgba(56,189,248,0.3);">
+      <h3 style="color:var(--diamond);">PASSE AU NIVEAU SUIVANT</h3>
+      <p>Rejoins les membres Elite et accède à ce qu'il y a de mieux en optimisation PC gaming.</p>
+      <a href="https://discord.gg/GAJhvvpC" class="btn-disc" style="background:linear-gradient(135deg,#1d6fa8,#38bdf8);color:#000;"><i class="ti ti-diamond"></i>DEVENIR ELITE</a>
+    </div>
+  </div>
+
+</div><!-- /services-wrap -->
+
+<footer><p>© 2026 TECHOPTIM &nbsp;·&nbsp; <a href="#">CONDITIONS</a> &nbsp;·&nbsp; <a href="index.html">ACCUEIL</a> &nbsp;·&nbsp; <a href="https://discord.gg/GAJhvvpC">DISCORD</a></p></footer>
+
+<script>
+function showPanel(id, tab) {
+  document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  tab.classList.add('active');
+  window.scrollTo({top: document.querySelector('.service-tabs').offsetTop - 80, behavior: 'smooth'});
+}
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+// Activate tab from URL hash
+(function(){
+  const hash = location.hash.replace('#','');
+  const map = {debloat:'debloat',registre:'registre',powerplan:'powerplan',inputlag:'latence','input-lag':'latence',latence:'latence',elite:'elite'};
+  if(map[hash]) {
+    const tabs = document.querySelectorAll('.stab');
+    const keys = ['debloat','registre','powerplan','latence','elite'];
+    const idx = keys.indexOf(map[hash]);
+    if(idx>=0) showPanel(map[hash], tabs[idx]);
+  }
+})();
+</script>
