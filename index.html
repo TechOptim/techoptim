@@ -1,0 +1,465 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg0:#04030f;--bg1:#070618;--bg2:#0b0920;
+  --p:#7c3aed;--p2:#9333ea;--p3:#a855f7;--p4:#c084fc;--p5:#e9d5ff;
+  --glow:rgba(124,58,237,0.6);
+  --circuit2:rgba(124,58,237,0.08);
+  --txt:#e2d9f3;--txt2:#a78bca;--txt3:#6b52a3;
+  --gold:#f59e0b;--diamond:#38bdf8;
+  --border:rgba(124,58,237,0.25);--border2:rgba(124,58,237,0.5);
+}
+body{background:var(--bg0);color:var(--txt);font-family:'Rajdhani',sans-serif;overflow-x:hidden;font-size:16px;}
+.circuit-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(90deg,var(--circuit2) 0,var(--circuit2) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,var(--circuit2) 0,var(--circuit2) 1px,transparent 1px,transparent 60px);}
+.circuit-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(124,58,237,0.12) 0%,transparent 60%);}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(4,3,15,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;font-family:'Orbitron',sans-serif;}
+.logo{font-size:1.1rem;font-weight:700;color:var(--p4);letter-spacing:0.15em;text-shadow:0 0 20px var(--glow);}
+.logo span{color:#fff;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--txt2);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;transition:color 0.2s;}
+.nav-links a:hover{color:var(--p4);}
+.nav-cta{background:linear-gradient(135deg,#5865f2,var(--p));color:#fff;border:none;padding:0.45rem 1.2rem;font-family:'Orbitron',sans-serif;font-weight:600;font-size:0.75rem;letter-spacing:0.1em;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:opacity 0.2s;}
+.nav-cta:hover{opacity:0.85;}
+
+.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden;}
+.scan-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(124,58,237,0.8),transparent);animation:scan 4s linear infinite;pointer-events:none;}
+@keyframes scan{0%{top:0;opacity:0.8;}100%{top:100%;opacity:0;}}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);padding:0.3rem 1rem;font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:0.15em;color:var(--p4);margin-bottom:2rem;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+.dot{width:6px;height:6px;background:var(--p3);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;line-height:1.1;letter-spacing:0.05em;margin-bottom:1.25rem;color:#fff;text-shadow:0 0 40px var(--glow);}
+h1 .hl{color:var(--p4);}
+.hero-sub{font-size:1rem;color:var(--txt2);max-width:520px;line-height:1.7;margin-bottom:2.5rem;}
+.btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-a{background:var(--p);color:#fff;border:none;padding:0.8rem 2rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.08em;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn-a:hover{background:var(--p2);}
+.btn-b{background:transparent;color:var(--p4);border:1px solid var(--border2);padding:0.8rem 2rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.08em;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn-b:hover{background:rgba(124,58,237,0.1);}
+.stats-row{display:flex;gap:0;margin-top:4rem;border:1px solid var(--border);overflow:hidden;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.stat{padding:1rem 2rem;text-align:center;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:700;color:var(--p4);}
+.stat-l{font-size:0.7rem;letter-spacing:0.1em;color:var(--txt3);margin-top:2px;}
+
+.sep{width:100%;border:none;border-top:1px solid var(--border);margin:0;}
+.section{padding:5rem 2rem;max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.stag{font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--p3);margin-bottom:0.6rem;display:flex;align-items:center;gap:8px;}
+.stag::before,.stag::after{content:'';display:inline-block;width:20px;height:1px;background:var(--p);}
+h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:700;margin-bottom:0.75rem;letter-spacing:0.05em;color:#fff;}
+.sdesc{color:var(--txt2);font-size:0.95rem;max-width:500px;line-height:1.6;margin-bottom:3rem;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;border:1px solid var(--border);}
+.feat{padding:1.5rem;background:rgba(7,6,24,0.8);transition:background 0.2s;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.feat:hover{background:rgba(124,58,237,0.06);}
+.fi{width:36px;height:36px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+.fi i{font-size:16px;color:var(--p3);}
+.ft{font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;color:var(--p5);margin-bottom:0.4rem;}
+.fd{font-size:0.85rem;color:var(--txt2);line-height:1.6;}
+
+.offres-wrap{background:rgba(7,6,24,0.95);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 2rem;}
+.offres-inner{max-width:1000px;margin:0 auto;}
+.offres-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;border:1px solid var(--border);margin-top:3rem;}
+.offre-card{padding:2rem;background:rgba(4,3,15,0.9);position:relative;}
+.offre-card.elite-card{background:rgba(10,6,30,0.95);}
+.offre-top{height:2px;background:var(--p);margin-bottom:1.5rem;}
+.offre-top.elite-top{background:var(--diamond);}
+.offre-name{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.18em;margin-bottom:0.5rem;}
+.offre-name.gold{color:var(--gold);}
+.offre-name.dia{color:var(--diamond);}
+.offre-desc{font-size:0.88rem;color:var(--txt2);line-height:1.65;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+.offre-inc-label{font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:0.15em;color:var(--txt3);margin-bottom:0.75rem;}
+.offre-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin-bottom:1.75rem;}
+.offre-list li{font-size:0.85rem;color:var(--txt2);display:flex;align-items:flex-start;gap:10px;line-height:1.5;}
+.offre-list li .arr{font-family:'Orbitron',sans-serif;font-size:0.65rem;color:var(--p3);margin-top:2px;flex-shrink:0;letter-spacing:-1px;}
+.offre-list li .arr.dia-arr{color:var(--diamond);}
+.extra-badge{font-size:0.6rem;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:var(--diamond);padding:1px 6px;margin-left:6px;vertical-align:middle;white-space:nowrap;}
+.offre-included{background:rgba(124,58,237,0.06);border:1px solid var(--border);padding:0.6rem 0.9rem;font-size:0.78rem;color:var(--txt3);margin-bottom:1.5rem;font-family:'Orbitron',sans-serif;letter-spacing:0.06em;}
+.offre-included.diamond-inc{background:rgba(56,189,248,0.04);border-color:rgba(56,189,248,0.15);color:rgba(56,189,248,0.6);}
+
+.btn-discord-full{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:0.85rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.12em;cursor:pointer;background:linear-gradient(135deg,#5865f2,var(--p));color:#fff;border:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:opacity 0.2s;text-decoration:none;}
+.btn-discord-full:hover{opacity:0.85;}
+.btn-discord-full.gold-disc{background:linear-gradient(135deg,rgba(245,158,11,0.9),rgba(180,100,5,0.9));color:#000;}
+
+.pricing-wrap{background:rgba(7,6,24,0.9);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 2rem;}
+.pricing-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1px;margin-top:3rem;border:1px solid var(--border);}
+.plan{padding:2rem;background:rgba(7,6,24,0.9);position:relative;transition:background 0.2s;}
+.plan:hover{background:rgba(124,58,237,0.05);}
+.plan.elite{background:rgba(88,28,200,0.06);}
+.plan-border-top{height:2px;background:var(--p);margin-bottom:1.5rem;}
+.plan-border-top.elite-top{background:var(--diamond);}
+.plan-name{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.15em;margin-bottom:0.25rem;}
+.plan-name.gold{color:var(--gold);}
+.plan-name.dia{color:var(--diamond);}
+.plan-sub{font-size:0.8rem;color:var(--txt3);margin-bottom:0.6rem;letter-spacing:0.05em;}
+.plan-mini-desc{font-size:0.82rem;color:var(--txt2);line-height:1.55;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+.prices{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);margin-bottom:1.5rem;}
+.pr{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0.9rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.pr:last-child{border-bottom:none;}
+.pr:hover{background:rgba(124,58,237,0.12);}
+.pr.best{background:rgba(124,58,237,0.08);}
+.pr.best:hover{background:rgba(124,58,237,0.18);}
+.pr-label{font-size:0.82rem;color:var(--txt2);letter-spacing:0.05em;}
+.pr-val{font-family:'Orbitron',sans-serif;font-size:0.9rem;font-weight:700;}
+.pr-val.gv{color:var(--gold);}
+.pr-val.dv{color:var(--diamond);}
+.life-badge{font-size:0.6rem;letter-spacing:0.05em;border:1px solid var(--border2);color:var(--p4);padding:1px 6px;margin-left:6px;vertical-align:middle;}
+.feats{list-style:none;display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.75rem;text-align:left;}
+.feats li{font-size:0.85rem;color:var(--txt2);display:flex;align-items:center;gap:8px;padding:0.3rem 0;border-bottom:1px solid var(--circuit2);}
+.feats li::before{content:'//';color:var(--p3);font-family:'Orbitron',sans-serif;font-size:0.65rem;letter-spacing:-1px;}
+.feats li.d::before{color:var(--diamond);}
+
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;border:1px solid var(--border);margin-top:2.5rem;}
+.tc{padding:1.25rem;background:rgba(7,6,24,0.8);}
+.tc-stars{color:var(--p4);font-size:0.8rem;letter-spacing:2px;margin-bottom:0.6rem;}
+.tc-q{font-size:0.85rem;color:var(--txt2);line-height:1.6;margin-bottom:0.9rem;font-style:italic;}
+.tc-q::before{content:'"';color:var(--p);font-size:1.2rem;font-family:'Orbitron',sans-serif;}
+.tc-name{font-family:'Orbitron',sans-serif;font-size:0.68rem;color:var(--p5);letter-spacing:0.08em;}
+.tc-role{font-size:0.75rem;color:var(--txt3);margin-top:2px;}
+
+.cta-box{border:1px solid var(--border2);margin:0 auto 5rem;max-width:800px;padding:3.5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--p),var(--p3),transparent);}
+.cta-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--p),var(--p3),transparent);}
+.cta-t{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:0.08em;margin-bottom:0.75rem;color:#fff;}
+.cta-s{color:var(--txt2);margin-bottom:2rem;font-size:0.9rem;}
+.btn-disc-cta{background:linear-gradient(135deg,#5865f2,var(--p));color:#fff;border:none;padding:0.85rem 2.5rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.12em;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:opacity 0.2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-disc-cta:hover{opacity:0.88;}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--txt3);font-size:0.75rem;font-family:'Orbitron',sans-serif;letter-spacing:0.08em;}
+footer a{color:var(--txt3);text-decoration:none;}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#08061a;border:1px solid var(--border2);max-width:480px;width:90%;position:relative;padding:0;max-height:90vh;overflow-y:auto;}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--p),var(--p3),transparent);z-index:1;}
+.modal-header{padding:1.5rem 1.5rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;}
+.modal-title{font-family:'Orbitron',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;color:#fff;}
+.modal-sub{font-size:0.75rem;color:var(--txt3);margin-top:3px;letter-spacing:0.06em;}
+.modal-close{background:none;border:1px solid var(--border);color:var(--txt2);width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;flex-shrink:0;}
+.modal-close:hover{border-color:var(--p3);color:var(--p4);}
+.modal-body{padding:1.5rem;}
+.order-recap{background:rgba(0,0,0,0.35);border:1px solid var(--border);margin-bottom:1.25rem;}
+.recap-plan-row{padding:0.9rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.recap-plan-name{font-family:'Orbitron',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;}
+.recap-plan-name.gv{color:var(--gold);}
+.recap-plan-name.dv{color:var(--diamond);}
+.recap-duration-badge{font-size:0.6rem;border:1px solid var(--border2);color:var(--p4);padding:2px 7px;font-family:'Orbitron',sans-serif;letter-spacing:0.08em;}
+.recap-rows{padding:0.6rem 1rem;}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:0.82rem;}
+.recap-row.total{border-top:1px solid var(--border);padding-top:8px;margin-top:4px;}
+.recap-label{color:var(--txt3);letter-spacing:0.04em;}
+.recap-val{font-family:'Orbitron',sans-serif;font-size:0.82rem;color:var(--txt);}
+.recap-val.gv{color:var(--gold);}
+.recap-val.dv{color:var(--diamond);}
+.recap-val.price{font-size:0.95rem;font-weight:700;}
+.pay-section-label{font-family:'Orbitron',sans-serif;font-size:0.58rem;letter-spacing:0.18em;color:var(--txt3);margin-bottom:0.6rem;}
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.25rem;max-width:300px;}
+.pay-card{background:rgba(124,58,237,0.05);border:1px solid var(--border);padding:0.75rem 0.5rem;cursor:pointer;text-align:center;transition:all 0.18s;position:relative;}
+.pay-card:hover{border-color:var(--border2);background:rgba(124,58,237,0.12);}
+.pay-card.selected{border-color:var(--p3);background:rgba(124,58,237,0.18);}
+.pay-card.selected::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--p3);}
+.pay-icon{font-size:22px;color:var(--p3);margin-bottom:5px;}
+.pay-icon.paypal{color:#009cde;}
+.pay-icon.crypto{color:var(--gold);}
+.pay-icon.paysafe{color:var(--p4);}
+.pay-name{font-family:'Orbitron',sans-serif;font-size:0.6rem;letter-spacing:0.1em;color:var(--txt);}
+.pay-form{display:none;}
+.pay-form.active{display:block;}
+.form-field{margin-bottom:0.8rem;}
+.form-label{font-family:'Orbitron',sans-serif;font-size:0.58rem;letter-spacing:0.14em;color:var(--txt3);margin-bottom:5px;display:block;}
+.form-input{width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--border);padding:0.55rem 0.75rem;color:var(--txt);font-family:'Rajdhani',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--p3);}
+.form-input::placeholder{color:var(--txt3);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.crypto-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0.9rem;}
+.crypto-tag{border:1px solid var(--border);padding:4px 10px;font-family:'Orbitron',sans-serif;font-size:0.58rem;color:var(--txt2);cursor:pointer;transition:all 0.15s;}
+.crypto-tag:hover,.crypto-tag.sel{border-color:var(--gold);color:var(--gold);}
+.pay-hint{font-size:0.78rem;color:var(--txt3);margin-top:0.4rem;line-height:1.5;}
+.btn-pay{width:100%;padding:0.85rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.14em;cursor:pointer;color:#fff;border:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background 0.2s;margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--p);}
+.btn-pay:hover{background:var(--p2);}
+.btn-pay.gold-pay{background:linear-gradient(135deg,rgba(245,158,11,0.9),rgba(180,100,5,0.9));color:#000;}
+.btn-pay.dia-pay{background:linear-gradient(135deg,#1d6fa8,#38bdf8);color:#000;}
+.pay-secure{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:0.75rem;font-size:0.7rem;color:var(--txt3);font-family:'Orbitron',sans-serif;letter-spacing:0.06em;}
+.pay-secure i{font-size:12px;color:var(--p3);}
+.success-screen{display:none;text-align:center;padding:2rem 0;}
+.success-screen.show{display:block;}
+.success-icon{font-size:2.5rem;color:var(--p4);margin-bottom:1rem;}
+.success-t{font-family:'Orbitron',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.1em;color:#fff;margin-bottom:0.5rem;}
+.success-s{font-size:0.85rem;color:var(--txt2);}
+</style>
+
+<div class="circuit-bg"></div>
+
+<nav>
+  <span class="logo">TECH<span>OPTIM</span></span>
+  <ul class="nav-links">
+    <li><a href="#">ACCUEIL</a></li>
+    <li><a href="#offres">OFFRES</a></li>
+    <li><a href="#pricing">TARIFS</a></li>
+    <li><a href="https://discord.gg/GAJhvvpC">DISCORD</a></li>
+  </ul>
+  <a href="https://discord.gg/GAJhvvpC" class="nav-cta"><i class="ti ti-brand-discord" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:4px;"></i>REJOINDRE</a>
+</nav>
+
+<section class="hero" style="z-index:1;position:relative;">
+  <div class="scan-line"></div>
+  <div class="hero-tag"><span class="dot"></span>SERVEUR DISCORD N°1 TECH</div>
+  <h1>OPTIMISE TON<br><span class="hl">NIVEAU TECH</span></h1>
+  <p class="hero-sub">TechOptim rassemble les meilleurs passionnés de tech. Optimisation PC, outils exclusifs et communauté ultra-active.</p>
+  <div class="btns">
+    <button class="btn-a" onclick="document.getElementById('offres').scrollIntoView({behavior:'smooth'})">VOIR LES OFFRES</button>
+    <a href="https://discord.gg/GAJhvvpC" class="btn-b"><i class="ti ti-brand-discord" aria-hidden="true"></i>REJOINDRE GRATUITEMENT</a>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-n">100+</div><div class="stat-l">MEMBRES</div></div>
+    <div class="stat"><div class="stat-n">99.9%</div><div class="stat-l">UPTIME</div></div>
+    <div class="stat"><div class="stat-n">100+</div><div class="stat-l">RESSOURCES</div></div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<div style="position:relative;z-index:1;">
+<div class="section">
+  <div class="stag">FONCTIONNALITES</div>
+  <h2>TOUT EN UN SEUL ENDROIT</h2>
+  <p class="sdesc">Une communauté sérieuse, des outils puissants, du contenu mis à jour en permanence.</p>
+  <div class="feat-grid">
+    <div class="feat"><div class="fi"><i class="ti ti-cpu" aria-hidden="true"></i></div><div class="ft">OPTIMISATION PC</div><div class="fd">Débloat, tweaks registre, power plan custom — ton PC tourne à son vrai potentiel.</div></div>
+    <div class="feat"><div class="fi"><i class="ti ti-users" aria-hidden="true"></i></div><div class="ft">COMMUNAUTE ACTIVE</div><div class="fd">Des milliers de membres prêts à t'aider, partager et évoluer avec toi.</div></div>
+    <div class="feat"><div class="fi"><i class="ti ti-lock-open" aria-hidden="true"></i></div><div class="ft">ACCES EXCLUSIF</div><div class="fd">Salons réservés Premium et Elite avec du contenu introuvable ailleurs.</div></div>
+    <div class="feat"><div class="fi"><i class="ti ti-chart-line" aria-hidden="true"></i></div><div class="ft">MAJ REGULIERES</div><div class="fd">Nouveau contenu chaque semaine. On suit les dernières tendances tech pour toi.</div></div>
+    <div class="feat"><div class="fi"><i class="ti ti-shield-check" aria-hidden="true"></i></div><div class="ft">SUPPORT PRIORITAIRE</div><div class="fd">Les membres Elite ont accès à un support dédié avec réponse rapide garantie.</div></div>
+    <div class="feat"><div class="fi"><i class="ti ti-gift" aria-hidden="true"></i></div><div class="ft">EVENTS & GIVEAWAYS</div><div class="fd">Participe à des événements exclusifs réservés aux membres Premium et Elite.</div></div>
+  </div>
+</div>
+</div>
+
+<hr class="sep">
+
+<div class="offres-wrap" id="offres" style="position:relative;z-index:1;">
+  <div class="offres-inner">
+    <div class="stag" style="justify-content:center;">CE QUE TU OBTIENS</div>
+    <h2 style="text-align:center;">CONTENU DES OFFRES</h2>
+    <p class="sdesc" style="margin:0 auto 0;text-align:center;">Tout ce qui est inclus dans chaque niveau d'accès.</p>
+    <div class="offres-grid">
+      <div class="offre-card">
+        <div class="offre-top"></div>
+        <div class="offre-name gold">// PREMIUM</div>
+        <p class="offre-desc">Optimisation complète de ton PC pour réduire la latence et améliorer la stabilité générale des performances. FPS plus stables en jeu, système plus réactif.</p>
+        <div class="offre-inc-label">INCLUS DANS L'OFFRE PREMIUM :</div>
+        <ul class="offre-list">
+          <li><span class="arr">//</span><span>Débloat de Windows — suppression des services et applications inutiles</span></li>
+          <li><span class="arr">//</span><span>Optimisations du registre Windows</span></li>
+          <li><span class="arr">//</span><span>Configuration d'un power plan personnalisé pour maximiser les performances</span></li>
+          <li><span class="arr">//</span><span>Réduction des processus en arrière-plan</span></li>
+          <li><span class="arr">//</span><span>Optimisation système pour une meilleure réactivité globale</span></li>
+        </ul>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-discord-full gold-disc"><i class="ti ti-brand-discord" aria-hidden="true"></i>REJOINDRE POUR PREMIUM</a>
+      </div>
+      <div class="offre-card elite-card">
+        <div class="offre-top elite-top"></div>
+        <div class="offre-name dia">// ELITE</div>
+        <p class="offre-desc">Tout ce que contient l'offre Premium, avec des optimisations encore plus poussées et des tweaks exclusifs inaccessibles ailleurs.</p>
+        <div class="offre-included diamond-inc"><i class="ti ti-check" style="font-size:12px;vertical-align:-1px;margin-right:4px;" aria-hidden="true"></i>TOUT LE CONTENU PREMIUM INCLUS +</div>
+        <div class="offre-inc-label">EXCLUSIVITES ELITE :</div>
+        <ul class="offre-list">
+          <li><span class="arr dia-arr">//</span><span>Tweaks avancés et optimisations exclusives <span class="extra-badge">ELITE ONLY</span></span></li>
+          <li><span class="arr dia-arr">//</span><span>Réglages plus agressifs pour réduire davantage l'input lag et améliorer la fluidité</span></li>
+          <li><span class="arr dia-arr">//</span><span>Optimisations supplémentaires pour les FPS et la stabilité système</span></li>
+          <li><span class="arr dia-arr">//</span><span>Tweaks "secrets" et configurations avancées non incluses dans l'offre Premium <span class="extra-badge">ELITE ONLY</span></span></li>
+        </ul>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-discord-full"><i class="ti ti-brand-discord" aria-hidden="true"></i>REJOINDRE POUR ELITE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep">
+
+<div class="pricing-wrap" id="pricing" style="position:relative;z-index:1;">
+  <div class="pricing-inner">
+    <div class="stag">BOUTIQUE</div>
+    <h2>CHOISIS TON ACCES</h2>
+    <p class="sdesc" style="margin:0 auto;text-align:center;">Clique sur une offre pour accéder au paiement.</p>
+    <div class="plan-grid">
+      <div class="plan">
+        <div class="plan-border-top"></div>
+        <div class="plan-name gold">// PREMIUM</div>
+        <div class="plan-sub">ACCES ESSENTIEL</div>
+        <p class="plan-mini-desc">Débloat, registre, power plan, réduction des processus.</p>
+        <div class="prices">
+          <div class="pr" onclick="openModal('PREMIUM','1 SEMAINE','1,99 €','gv')" style="cursor:pointer;"><span class="pr-label">1 SEMAINE</span><span class="pr-val gv">1,99 € <i class="ti ti-arrow-right" style="font-size:12px;"></i></span></div>
+          <div class="pr" onclick="openModal('PREMIUM','1 MOIS','4,99 €','gv')" style="cursor:pointer;"><span class="pr-label">1 MOIS</span><span class="pr-val gv">4,99 € <i class="ti ti-arrow-right" style="font-size:12px;"></i></span></div>
+          <div class="pr best" onclick="openModal('PREMIUM','A VIE','19,99 €','gv')" style="cursor:pointer;"><span class="pr-label">A VIE <span class="life-badge">TOP</span></span><span class="pr-val gv">19,99 € <i class="ti ti-arrow-right" style="font-size:12px;"></i></span></div>
+        </div>
+        <ul class="feats">
+          <li>Débloat Windows</li>
+          <li>Optimisations registre</li>
+          <li>Power plan personnalisé</li>
+          <li>Réduction processus arrière-plan</li>
+        </ul>
+      </div>
+      <div class="plan elite">
+        <div class="plan-border-top elite-top"></div>
+        <div class="plan-name dia">// ELITE</div>
+        <div class="plan-sub">ACCES COMPLET — RECOMMANDE</div>
+        <p class="plan-mini-desc">Tout le Premium + tweaks avancés, input lag réduit au maximum, configs exclusives.</p>
+        <div class="prices">
+          <div class="pr" onclick="openModal('ELITE','1 SEMAINE','3,99 €','dv')" style="cursor:pointer;"><span class="pr-label">1 SEMAINE</span><span class="pr-val dv">3,99 € <i class="ti ti-arrow-right" style="font-size:12px;"></i></span></div>
+          <div class="pr" onclick="openModal('ELITE','1 MOIS','9,99 €','dv')" style="cursor:pointer;"><span class="pr-label">1 MOIS</span><span class="pr-val dv">9,99 € <i class="ti ti-arrow-right" style="font-size:12px;"></i></span></div>
+          <div class="pr best" onclick="openModal('ELITE','A VIE','39,99 €','dv')" style="cursor:pointer;"><span class="pr-label">A VIE <span class="life-badge">TOP</span></span><span class="pr-val dv">39,99 € <i class="ti ti-arrow-right" style="font-size:12px;"></i></span></div>
+        </div>
+        <ul class="feats">
+          <li>Tout le Premium inclus</li>
+          <li class="d">Tweaks avancés exclusifs</li>
+          <li class="d">Input lag ultra réduit</li>
+          <li class="d">Configs secrètes Elite only</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep">
+
+<div style="position:relative;z-index:1;">
+<div class="section">
+  <div class="stag">RETOURS MEMBRES</div>
+  <h2>CE QU'ILS EN PENSENT</h2>
+  <div class="testi-grid">
+    <div class="tc"><div class="tc-stars">★★★★★</div><p class="tc-q">Le débloat + power plan ont changé ma vie. Mon PC est méconnaissable, FPS ultra stables.</p><div class="tc-name">MAXIME_R</div><div class="tc-role">MEMBRE ELITE · A VIE</div></div>
+    <div class="tc"><div class="tc-stars">★★★★★</div><p class="tc-q">Les tweaks secrets Elite sont dingues, j'ai gagné genre 40 FPS stables sur Warzone.</p><div class="tc-name">LAURA_D</div><div class="tc-role">MEMBRE ELITE · MENSUEL</div></div>
+    <div class="tc"><div class="tc-stars">★★★★☆</div><p class="tc-q">Commencé en Premium, passé Elite après une semaine. Les optimisations avancées valent vraiment le coup.</p><div class="tc-name">THOMAS_K</div><div class="tc-role">MEMBRE ELITE · A VIE</div></div>
+  </div>
+</div>
+</div>
+
+<hr class="sep">
+
+<div style="position:relative;z-index:1;padding:5rem 2rem 0;">
+<div class="cta-box">
+  <h2 class="cta-t">REJOINS LE SERVEUR</h2>
+  <p class="cta-s">Plus de 100 membres t'attendent. L'accès de base est gratuit.</p>
+  <a href="https://discord.gg/GAJhvvpC" class="btn-disc-cta"><i class="ti ti-brand-discord" aria-hidden="true"></i>REJOINDRE LE DISCORD</a>
+</div>
+</div>
+
+<footer><p>© 2026 TECHOPTIM &nbsp;·&nbsp; <a href="#">CONDITIONS</a> &nbsp;·&nbsp; <a href="https://discord.gg/GAJhvvpC">DISCORD</a></p></footer>
+
+<div class="modal-overlay" id="payModal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">FINALISER LA COMMANDE</div>
+        <div class="modal-sub" id="modalSub">TECHOPTIM · PAIEMENT SÉCURISÉ</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><i class="ti ti-x" style="font-size:14px;"></i></button>
+    </div>
+    <div class="modal-body">
+      <div id="mainContent">
+        <div class="order-recap">
+          <div class="recap-plan-row">
+            <span class="recap-plan-name" id="recapPlanName">—</span>
+            <span class="recap-duration-badge" id="recapBadge">—</span>
+          </div>
+          <div class="recap-rows">
+            <div class="recap-row"><span class="recap-label">OFFRE</span><span class="recap-val" id="recapPlan">—</span></div>
+            <div class="recap-row"><span class="recap-label">DURÉE</span><span class="recap-val" id="recapDuree">—</span></div>
+            <div class="recap-row total"><span class="recap-label">TOTAL</span><span class="recap-val price" id="recapPrix">—</span></div>
+          </div>
+        </div>
+
+        <div class="pay-section-label">MÉTHODE DE PAIEMENT</div>
+        <div class="pay-methods">
+          <div class="pay-card selected" onclick="selectMethod(this,'card')">
+            <div class="pay-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div>
+            <div class="pay-name">CARTE</div>
+          </div>
+          <div class="pay-card" onclick="selectMethod(this,'paypal')">
+            <div class="pay-icon paypal"><i class="ti ti-brand-paypal" aria-hidden="true"></i></div>
+            <div class="pay-name">PAYPAL</div>
+          </div>
+
+        </div>
+
+        <div class="pay-form active" id="formCard">
+          <p class="pay-hint">Clique sur le bouton ci-dessous pour accéder à la page de paiement sécurisée.</p>
+        </div>
+        <div class="pay-form" id="formPaypal">
+          <p class="pay-hint">Clique sur le bouton ci-dessous pour accéder à PayPal.</p>
+        </div>
+
+
+        <button class="btn-pay" id="btnPay" onclick="confirmPay()"><i class="ti ti-lock" style="font-size:15px;"></i> <span id="btnPayText">PAYER</span></button>
+        <div class="pay-secure"><i class="ti ti-shield-check" aria-hidden="true"></i> PAIEMENT CHIFFRÉ ET SÉCURISÉ</div>
+      </div>
+
+      <div class="success-screen" id="successScreen">
+        <div class="success-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+        <div class="success-t">PAIEMENT CONFIRMÉ !</div>
+        <p class="success-s" id="successMsg">Ton accès va être activé sous peu.</p>
+        <a href="https://discord.gg/GAJhvvpC" class="btn-discord-full" style="margin-top:1.5rem;"><i class="ti ti-brand-discord" aria-hidden="true"></i>REJOINDRE LE DISCORD</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentColor='',currentPlan='',currentDuree='',currentPrix='';
+function openModal(plan,duree,prix,color){
+  currentPlan=plan;currentDuree=duree;currentPrix=prix;currentColor=color;
+  document.getElementById('modalTitle').textContent='FINALISER LA COMMANDE';
+  document.getElementById('modalSub').textContent='TECHOPTIM · PAIEMENT SÉCURISÉ';
+  var pn=document.getElementById('recapPlanName');
+  pn.className='recap-plan-name '+(color==='gv'?'gv':'dv');
+  pn.textContent='// '+plan;
+  document.getElementById('recapBadge').textContent=duree;
+  document.getElementById('recapPlan').textContent=plan;
+  document.getElementById('recapDuree').textContent=duree;
+  var rp=document.getElementById('recapPrix');
+  rp.className='recap-val price '+(color==='gv'?'gv':'dv');
+  rp.textContent=prix;
+  var btn=document.getElementById('btnPay');
+  btn.className='btn-pay '+(color==='gv'?'gold-pay':'dia-pay');
+  document.getElementById('btnPayText').textContent='PAYER '+prix;
+  document.getElementById('mainContent').style.display='block';
+  document.getElementById('successScreen').classList.remove('show');
+  document.querySelectorAll('.pay-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelector('.pay-card').classList.add('selected');
+  document.querySelectorAll('.pay-form').forEach(f=>f.classList.remove('active'));
+  document.getElementById('formCard').classList.add('active');
+  document.getElementById('payModal').classList.add('open');
+}
+function closeModal(){document.getElementById('payModal').classList.remove('open');}
+function handleOverlayClick(e){if(e.target===document.getElementById('payModal'))closeModal();}
+function selectMethod(el,method){currentMethod=method;
+  document.querySelectorAll('.pay-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.querySelectorAll('.pay-form').forEach(f=>f.classList.remove('active'));
+  document.getElementById('form'+method.charAt(0).toUpperCase()+method.slice(1)).classList.add('active');
+}
+document.querySelectorAll('.crypto-tag').forEach(t=>{
+  t.onclick=function(){document.querySelectorAll('.crypto-tag').forEach(c=>c.classList.remove('sel'));this.classList.add('sel');}
+});
+var shoppyLinks={"PREMIUM_1 SEMAINE":"https://whop.com/techoptim/premium-1-semaine-5f/","PREMIUM_1 MOIS":"https://whop.com/techoptim/premium-1-mois-4-99/","PREMIUM_A VIE":"https://whop.com/techoptim/premium-a-vie-19-99/","ELITE_1 SEMAINE":"https://whop.com/techoptim/elite-1-semaine/","ELITE_1 MOIS":"https://whop.com/techoptim/elite-1-mois/","ELITE_A VIE":"https://whop.com/techoptim/elite-a-vie/"};
+var stripeLinks={"PREMIUM_1 SEMAINE":"https://buy.stripe.com/bJe00j0zG9gp2um07C67S08","PREMIUM_1 MOIS":"https://buy.stripe.com/aFadR95U0boxfh85rW67S07","PREMIUM_A VIE":"https://buy.stripe.com/28E8wP96c8cl5Gy1bG67S05","ELITE_1 SEMAINE":"https://buy.stripe.com/5kQ4gz6Y478hglc8E867S04","ELITE_1 MOIS":"https://buy.stripe.com/bJe14n2HO64dc4WaMg67S03","ELITE_A VIE":"https://buy.stripe.com/3cIdR94PW2S15Gy4nS67S01"};
+var currentMethod="card";
+var WEBHOOK="https://discord.com/api/webhooks/1507909210938146967/7-xwErRgofa7MP7Hv_aPjHV20zpBmKeFAerhi6AZYTmdJv1xhrrrFRLZEmdHQxbNMlSW";
+function sendLog(plan,duree,method,price){
+  var methodLabel=method==="card"?"Carte (Stripe)":"PayPal (Whop)";
+  var color=method==="card"?3447003:16776960;
+  fetch(WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({embeds:[{title:(method==="card"?"\uD83D\uDCB3":"\uD83C\uDD7F\uFE0F")+" Nouveau paiement initi\u00e9",color:color,fields:[{name:"\uD83D\uDCE6 Offre",value:"**"+plan+" \u2014 "+duree+"**",inline:true},{name:"\uD83D\uDCB0 Prix",value:"**"+price+"**",inline:true},{name:"\uD83D\uDCB3 M\u00e9thode",value:methodLabel,inline:true}],footer:{text:"TechOptim \u2022 "+new Date().toLocaleString("fr-FR")}}]})});
+}
+var prices={"PREMIUM_1 SEMAINE":"1,99 \u20ac","PREMIUM_1 MOIS":"4,99 \u20ac","PREMIUM_A VIE":"19,99 \u20ac","ELITE_1 SEMAINE":"3,99 \u20ac","ELITE_1 MOIS":"9,99 \u20ac","ELITE_A VIE":"39,99 \u20ac"};
+function confirmPay(){
+  var key=currentPlan+"_"+currentDuree;
+  var url=currentMethod==="card"?stripeLinks[key]:shoppyLinks[key];
+  if(url){sendLog(currentPlan,currentDuree,currentMethod,prices[key]||"?");window.open(url,"_blank");}
+}
+</script>
+
+
+
